@@ -1,0 +1,155 @@
+Route::get('/', function () {
+	return view('greeting', ['name' => 'Elania Resources']);
+});
+
+use Illuminate\Support\Facades\View;
+ 
+return View::make('greeting', ['name' => 'Elania Resources']);
+
+Hello, {{ $name }}.
+
+return view('admin.profile', $data);
+
+return view('greetings', ['name' => 'Virtual Perak Technology']);
+
+return view('greeting')
+	->with('name', 'Virtual Perak Technology')
+	->with('occupation', ‘Software Engineer');
+
+public function boot()
+{
+	View::share('key', 'value');
+}
+
+composer create-project laravel/laravel livewire
+cd livewire
+composer require livewire/livewire 
+php artisan livewire:publish
+
+The current UNIX timestamp is {{ time() }}.
+
+@if (count($records) === 1)
+	I have one record!
+@elseif (count($records) > 1)
+	I have multiple records!
+@else
+	I don't have any records!
+@endif
+
+@unless (Auth::check())
+	You are not signed in.
+@endunless
+
+
+@isset($records)
+	// $records is defined and is not null...
+@endisset
+ 
+
+@empty($records)
+	// $records is "empty"...
+@endempty
+
+
+@switch($i)
+	@case(1)
+		First case...
+	@break
+ 
+	@case(2)
+		Second case...
+	@break
+ 
+	@default
+		Default case...
+@endswitch
+
+
+@for ($i = 0; $i < 10; $i++)
+	The current value is {{ $i }}
+@endfor
+ 
+@foreach ($users as $user)
+	<p>This is user {{ $user->id }}</p>
+@endforeach
+ 
+@forelse ($users as $user)
+	<li>{{ $user->name }}</li>
+@empty
+	<p>No users</p>
+@endforelse
+ 
+@while (true)
+	<p>I'm looping forever.</p>
+@endwhile
+
+
+@production
+	// Production specific content...
+@endproduction
+
+
+@production
+	// Production specific content...
+@endproduction
+
+
+@auth
+	// The user is authenticated...
+@endauth
+
+
+@guest
+	// The user is not authenticated...
+@endguest
+
+
+composer create-project laravel/laravel breeze
+composer require laravel/breeze
+php artisan breeze:install
+npm install && npm run dev
+
+
+use Illuminate\Support\Facades\Auth;
+ 
+// Retrieve the currently authenticated user...
+$user = Auth::user();
+ 
+// Retrieve the currently authenticated user's ID...
+$id = Auth::id();
+
+if (Auth::check()) {
+// The user is logged in...
+}
+
+
+Route::get('/flights', function () {
+	// Only authenticated users may access this route...
+})->middleware('auth');
+
+
+Route::get('/settings', function () {
+	// ...
+})->middleware(['password.confirm']);
+ 
+Route::post('/settings', function () {
+	// ...
+})->middleware(['password.confirm']);
+
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+ 
+Route::post('/confirm-password', function (Request $request) {
+if (! Hash::check($request->password, 
+	$request->user()->password)) {
+		return back()->withErrors([
+		'password' => ['The password does not matched']
+		]);
+	}
+ 
+	$request->session()->passwordConfirmed();
+ 
+	return redirect()->intended();
+})->middleware(['auth', 'throttle:6,1']);
