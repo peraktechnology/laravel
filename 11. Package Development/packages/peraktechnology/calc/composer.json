@@ -1,0 +1,14 @@
+{
+    "name": "peraktechnology/calc",
+    "description": "Calculation Function",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Virtual Perak Technology",
+            "email": "peraktechnology@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
